@@ -1,0 +1,14 @@
+execute DS4.nex;
+
+begin trees;
+  tree raxmltree = ((Entomophthora_muscae:0.135523,Mucor_mucedo:0.189645):0.028404,(Smittium_culisetae:0.025368,Capniomyces_stellatus:0.028117):0.103095,(((Taphrina_deformans:0.009128,Protomyces_inouyei:0.003555):0.035811,((Endomyces_scopularum:0.062206,(Ambrosiozyma_platypodis:0.061182,Candida_albicans:0.018730):0.020753):0.023406,((((Neurospora_crassa:0.039757,((Petriella_setifera:0.019455,Microascus_trigonosporus:0.008969):0.024321,((Melanospora_fallax:0.000001,Melanospora_zamiae:0.068687):0.010675,(Sphaerostilbella_aureonitens:0.020566,Balansia_sclerotica:0.019723):0.005335):0.006168):0.014348):0.005834,(Xylaria_hypoxylon:0.022152,((Ophiostoma_ulmi:0.001085,Ophiostoma_piliferum:0.004429):0.022406,Leucostoma_persoonii:0.025456):0.007342):0.004212):0.022289,(Termitaria_snyderi:0.018149,(Kathistes_calyculata:0.012445,Kathistes_analemmoides:0.013123):0.026473):0.044579):0.011307,((((Scorias_spongiosa:0.025912,Capnodium_dermatum:0.035210):0.011845,(((Laboulbeniopsis_termitarius:0.069076,(Pyxidiophora_sp1:0.015564,Pyxidiophora_SPO3:0.009402):0.018644):0.005963,((Stigmatomyces_limnophorae:0.155637,Hesperomyces_coccinelloides:0.034410):0.041992,Zodiomyces_vorticellarius:0.025638):0.009096):0.034220,(Ascobolus_denudatus:0.060122,Morchella_esculenta:0.019530):0.008991):0.007187):0.002096,Cladonia_subcervicornis:0.030421):0.006311,((Ceramothyrium_linnaeae:0.017596,Graphium_calicioides:0.012171):0.030149,((Elaphomyces_maculatus:0.012704,Monascus_purpureus:0.018172):0.009669,Talaromyces_flavus:0.026920):0.016596):0.006558):0.005321):0.016436):0.020069):0.057881,(Neocallimastix_frontalis:0.061441,Chytridium_confervae:0.089150):0.025899):0.016590);
+end;
+
+begin mrbayes;
+    startvals tau = raxmltree V = raxmltree;
+    set autoclose=yes nowarn=yes seed=106765079 swapseed=422701966;
+    lset nst=1 rates=equal;
+    prset statefreqpr=fixed(equal) topologypr=uniform brlenspr=unconstrained:exp(10);
+    mcmcp nruns=1 nchains=1 ngen=1000000 samplefreq=1000 printfreq=10000 file=DS4_out diagnfreq=5;
+    mcmc;
+end;

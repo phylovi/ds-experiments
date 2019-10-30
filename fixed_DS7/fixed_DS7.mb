@@ -1,0 +1,14 @@
+execute DS7.nex;
+
+begin trees;
+  tree raxmltree = ((((Mirza_coquereli:0.086152,((((((Lemur_catta:0.054988,Hapalemur_griseus:0.069007):0.028750,(Eulemur_mongoz:0.033170,(((Eulemur_fulvus_rufus:0.015789,Eulemur_fulvus_albifrons:0.008080):0.010431,Eulemur_fulvus_collaris:0.016163):0.021399,((Eulemur_macaco_flavifrons:0.029114,Eulemur_macaco_macaco:0.017670):0.026029,Eulemur_rubriventer:0.028584):0.009730):0.012562):0.058890):0.023816,(Varecia_variegata_rubra:0.019623,Varecia_variegata_variegata:0.008671):0.089324):0.024505,Propithecus_tattersalli:0.106828):0.024583,(((((((Ursus_americanus:0.119752,Canis_familiaris:0.121226):0.028666,Felis_catus:0.115200):0.027258,((Bos_taurus:0.116714,((Physeter_macrocephalus:0.096538,Balaenoptera_physalus:0.069773):0.046740,Hippopotamus_amphibius:0.116334):0.024742):0.027481,(Rhinocerus:0.088498,Equus_caballus:0.093448):0.031772):0.017593):0.028994,(Callithrix_jacchus:0.189068,(Macaca_mulatta:0.126054,((Gorilla_gorilla:0.061028,(Pan_troglodytes:0.050785,Homo_sapiens:0.064165):0.021494):0.021598,Pongo_pygmaeus:0.082422):0.040794):0.068005):0.062607):0.031912,(Daubentonia:0.111718,Didelphis_virginiana:0.194169):0.037970):0.025691,(Loris_tardigradus:0.103571,Galago_demidoff:0.102444):0.047407):0.040624,Lepilemur_ruficaudatus:0.122788):0.026801):0.035388,Cheirogaleus_major:0.078387):0.040076):0.052021,(((((Microcebus__rufus_1.171:0.000548,(Microcebus__rufus_1.174:0.000548,(Microcebus__rufus_1.162:0.000548,Microcebus__rufus_1.138:0.000548):0.000001):0.000001):0.011718,((Microcebus_myoxinus_185:0.006008,Microcebus_myoxinus_76:0.004679):0.017935,(Microcebus_berthae_148:0.001091,Microcebus_berthae_159:0.001105):0.015951):0.004964):0.011649,((Microcebus__rufus_2.191:0.000001,Microcebus__rufus_2.190:0.000001):0.030648,(Microcebus_sambiranensis_72:0.000548,Microcebus_sambiranensis_80:0.000001):0.031017):0.007974):0.009598,(Microcebus_tavaratra_110:0.002688,Microcebus_tavaratra_69:0.001164):0.035994):0.018995,(Microcebus_ravelobensis_68:0.001050,Microcebus_ravelobensis_66:0.002245):0.047909):0.016436):0.023519,((((Microcebus_murinus_153:0.002198,Microcebus_murinus_74:0.003300):0.002976,Microcebus_murinus_141:0.004735):0.006910,Microcebus_murinus_122:0.005150):0.003796,Microcebus_murinus_199:0.007035):0.042934):0.044252,(Microcebus_griseorufus_101:0.002744,Microcebus_griseorufus_116:0.001651):0.001106,(Microcebus_griseorufus_355:0.000001,Microcebus_griseorufus_351:0.000001):0.000544);
+end;
+
+begin mrbayes;
+    startvals tau = raxmltree V = raxmltree;
+    set autoclose=yes nowarn=yes seed=106765079 swapseed=422701966;
+    lset nst=1 rates=equal;
+    prset statefreqpr=fixed(equal) topologypr=fixed(raxmltree) brlenspr=unconstrained:exp(10);
+    mcmcp nruns=1 nchains=1 ngen=1000000 samplefreq=1000 printfreq=10000 file=DS7_out diagnfreq=5;
+    mcmc;
+end;

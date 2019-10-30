@@ -1,0 +1,15 @@
+execute primates.nex;
+
+begin trees;
+  tree raxmltree = (((Macaca_fuscata:0.013087,M_mulatta:0.033038):0.027440,M_fascicularis:0.063736):0.030348,M_sylvanus:0.056787,((Hylobates:0.111190,((Gorilla:0.069112,(Pan:0.059306,Homo_sapiens:0.035268):0.023522):0.034422,Pongo:0.082368):0.040691):0.025920,(Saimiri_sciureus:0.194764,(Tarsius_syrichta:0.182556,Lemur_catta:0.120350):0.088729):0.037534):0.092014);
+end;
+
+begin mrbayes;
+
+    startvals tau = raxmltree V = raxmltree;
+    set autoclose=yes nowarn=yes seed=106765079 swapseed=422701966;
+    lset nst=1 rates=equal;
+    prset statefreqpr=fixed(equal) topologypr=uniform brlenspr=unconstrained:exp(10);
+    mcmcp nruns=1 nchains=1 ngen=10000000 samplefreq=1000 printfreq=10000 file=primates_out diagnfreq=5;
+    mcmc;
+end;

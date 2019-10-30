@@ -1,0 +1,12 @@
+*.ckp
+*.ckp~
+*.mcmc
+*.p
+*.t
+*.con.tre
+*.lstat
+*.parts
+*.pstat
+*.trprobs
+*.tstat
+*.vstat

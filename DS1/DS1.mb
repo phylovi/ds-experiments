@@ -1,0 +1,15 @@
+execute DS1.nex;
+
+begin trees;
+  tree besttree = (Alligator_mississippiensis,(((((((((((Ambystoma_mexicanum,Siren_intermedia),(Discoglossus_pictus,Typhlonectes_natans)),(((Amphiuma_tridactylum,Hypogeophis_rostratus),Grandisonia_alternans),(Ichthyophis_bannanicus,(Plethodon_yonhalossee,Scaphiopus_holbrooki)))),Bufo_valliceps),(Eleutherodactylus_cuneatus,(Gastrophryne_carolinensis,Nesomantis_thomasseti))),Hyla_cinerea),Xenopus_laevis),Latimeria_chalumnae),((Homo_sapiens,Oryctolagus_cuniculus),(Mus_musculus,Rattus_norvegicus))),(Heterodon_platyrhinos,Trachemys_scripta)),Sceloporus_undulatus),(Gallus_gallus,Turdus_migratorius));
+end;
+
+begin mrbayes;
+
+    startvals tau = besttree;
+    set autoclose=yes nowarn=yes seed=106765079 swapseed=422701966;
+    lset nst=1 rates=equal;
+    prset statefreqpr=fixed(equal) topologypr=uniform brlenspr=unconstrained:exp(10);
+    mcmcp nruns=1 nchains=1 ngen=1000000 samplefreq=1000 printfreq=10000 file=DS1_out diagnfreq=5;
+    mcmc;
+end;

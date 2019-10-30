@@ -1,0 +1,10 @@
+#NEXUS
+begin data;
+	dimensions ntax=3 nchar=31;
+	format datatype=dna missing=? gap=-;
+matrix
+mars    CCGAG-AGCAGCAATGGAT-GAGGCATGGCG
+saturn  GCGCGCAGCTGCTGTAGATGGAGGCATGACG
+jupiter GCGCGCAGCAGCTGTGGATGGAAGGATGACG
+;
+end;

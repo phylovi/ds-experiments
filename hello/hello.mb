@@ -1,0 +1,10 @@
+execute hello.nex;
+
+begin mrbayes;
+
+    set autoclose=yes nowarn=yes seed=106765079 swapseed=422701966;
+    lset nst=1 rates=equal;
+    prset statefreqpr=fixed(equal) topologypr=uniform brlenspr=unconstrained:exp(10);
+    mcmcp nruns=1 nchains=1 ngen=1000000 samplefreq=1000 printfreq=10000 file=hello_out diagnfreq=5;
+    mcmc;
+end;
